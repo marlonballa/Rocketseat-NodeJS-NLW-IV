@@ -1,0 +1,24 @@
+cinst yarn -> instala o yarn
+
+yarn init -y -> cria o packge.json 
+yarn add express -> instala o express como dependência de desenvolvimento
+yarn add @types/express -D -> biblioteca de tipagem instalada no ambiente de desenvolvimento.
+yarn add typescript -> instala o typescript no ambiente de desenvolvimento
+yarn tsc --init -> inicia o typescript na aplicação
+yarn add ts-node-dev -D -> complia typescript para javascript
+
+Em package.json, criar um script que vai rodar a compilação do código
+"scripts": {
+	"start": "ts-node-dev --transpile-only --ignore-watch node-modules src/server.js"
+}
+--transpile-only -> deixa de fazer a checagem de tipagem. 
+--ignore-watch node-modules -> ignora o que está acontecendo em node-modules
+
+yarn start -> inicia o servidor
+
+*Navegadores trabalham apenas com método GET*
+O insomnia é um simulador de cliente, ele vai consumir a API e verificar se todas as rotas e funções estão corretas. 
+Dentro do Insomnia, criar uma Base Enviroment: No Environment - Manager Environment - Base Environment
+{
+  "baseURL": "http://localhost:3333"
+}
