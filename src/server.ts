@@ -1,7 +1,6 @@
 import 'reflect-metadata';
 import express from "express";
 import './database/';
-
 const app = express();
 /* Get -> buscar,
    Post -> salvar, 
@@ -11,13 +10,6 @@ const app = express();
 
    /* 1º Recurso
       2º Request/Response */
-app.get("/", (request, response) => {
-    return response.send("Hello Word! NLW 04");
-})
-
-app.post("/", (request, response) => {
-    return response.json({message: "Dados salvos com sucesso :)"})
-})
-
+app.use(router);
 //cria o servidor (fica ouvindo a porta)
 app.listen(3333, () => console.log("Server is Running"));
