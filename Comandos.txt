@@ -22,3 +22,84 @@ Dentro do Insomnia, criar uma Base Enviroment: No Environment - Manager Environm
 {
   "baseURL": "http://localhost:3333"
 }
+
+Dia 02
+Podemos nos comunicar de três formas com o banco de dadods. 
+	- Por meio do driver do banco de dados.
+	- Query Bielders (knex) 
+	- ORM (TypeORM, Sequelize)
+		- O TypeORM trabalha muito bem com o TypeScript
+		- Basta mudar o driver para mudar o banco (sem mudar as querys).
+
+	Instalando o TypeORM 
+		yarn add typeorm reflect-metadata 
+	Instalando o Banco de Dados
+		yarn add sqlite3
+
+	Criar um ORM Config (na raiz)
+		{
+    			"type": "sqlite",
+    			"database":"./src/database/database.sqlite"
+		}
+
+	Criar uma pasta chamada database, dentro de src e dentro dela criar um index.ts
+		import { createConnection } from "typeorm"; 
+		createConnection()
+	
+	Em server.ts 
+		import 'reflect-metadata'
+		import './database/'
+
+	Comando para rodar as migrations:
+		dentro de package.json
+		"scripts"{
+			"typeorm": "ts-node-dev node_modules/typeorm/cli.js"	
+		}
+		
+	Dentro da pasta database, criar uma pasa chamada migrations (ela vai armazenar as migrations)
+		Cria uma migration 
+		yarn typeorm migration:create -n CreateUsers
+
+		Roda a migration
+		yarn typeorm migration:run
+
+		Desfaz a última migration
+		yarn typeorm migration:revert
+
+	Informar em ORMConfig a migration que deve ser executada. 
+		{
+    			"type": "sqlite",
+    			"database":"./src/database/database.sqlite",
+    			"migrations": ["./src/database/migrations/**.ts"],
+    			"cli": {
+        			"migrationsDir": "./src/database/migrations"
+    			}
+		}
+
+
+	Beekeeper: permite testar o banco de dados. 
+
+	Criar uma pasta controllers dentro de SRC
+		o Controller é responsável por cuidar das funcionalidades desenvolvidas para o sistema e o server chama o controller. 
+	
+	Adiciona a biblioteca uuid, que será responsável por criar o id. 
+		yarn add uuid
+		yarn uuid @types/uuid -D 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
